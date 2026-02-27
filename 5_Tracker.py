@@ -7,7 +7,8 @@ from datetime import datetime
 
 st.set_page_config(page_title="Live Tracker — RouteIQ", page_icon="📍", layout="wide")
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
-    st.switch_page("app.py")
+    st.session_state.logged_in = False
+    st.rerun()
 if 'dark_mode' not in st.session_state: st.session_state.dark_mode = True
 if 'lang' not in st.session_state: st.session_state.lang = "EN"
 
@@ -81,7 +82,8 @@ with st.sidebar:
             st.session_state.lang = "TA" if st.session_state.lang=="EN" else "EN"; st.rerun()
     st.divider()
     if st.button("🚪 Sign Out", use_container_width=True):
-        st.session_state.logged_in = False; st.switch_page("app.py")
+        st.session_state.logged_in = False
+        st.rerun()
 
 st.markdown(f"""
 <div class="page-title">📍 {"நேரடி கண்காணிப்பு" if lang=="TA" else "Live Tracker"}</div>

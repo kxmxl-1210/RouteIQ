@@ -282,6 +282,7 @@ L = LANG[st.session_state.lang]
 # ── If already logged in, redirect ────────────────────────────────────────────
 if st.session_state.logged_in:
     st.switch_page("pages/1_Dashboard.py")
+    st.stop()
 
 # ── Theme & Lang Toggle ────────────────────────────────────────────────────────
 col_t1, col_t2, col_t3 = st.columns([8, 1, 1])
@@ -362,11 +363,11 @@ with right:
                 if email and password:
                     st.session_state.logged_in = True
                     st.session_state.username = email.split("@")[0].title()
-                    st.switch_page("pages/1_Dashboard.py")
+                    st.rerun()
                 else:
                     st.error("Please enter email and password")
         with col_b:
             if st.button(L['demo'], use_container_width=True):
                 st.session_state.logged_in = True
                 st.session_state.username = "Demo User"
-                st.switch_page("pages/1_Dashboard.py")
+                st.rerun()

@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 
 st.set_page_config(page_title="Demand Forecast — RouteIQ", page_icon="📈", layout="wide")
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
-    st.switch_page("app.py")
+    st.session_state.logged_in = False
+    st.rerun()
 if 'dark_mode' not in st.session_state: st.session_state.dark_mode = True
 if 'lang' not in st.session_state: st.session_state.lang = "EN"
 
@@ -85,7 +86,8 @@ with st.sidebar:
             st.session_state.lang = "TA" if st.session_state.lang=="EN" else "EN"; st.rerun()
     st.divider()
     if st.button("🚪 Sign Out", use_container_width=True):
-        st.session_state.logged_in = False; st.switch_page("app.py")
+        st.session_state.logged_in = False
+        st.rerun()
 
 st.markdown(f'<div class="page-title">📈 {"தேவை கணிப்பு" if lang=="TA" else "Demand Forecasting"}</div><div class="page-sub">{"மண்டல அளவில் டெலிவரி தேவையை முன்னறிவிக்கவும்" if lang=="TA" else "AI-powered delivery demand forecasts to prepare warehouses in advance"}</div>', unsafe_allow_html=True)
 

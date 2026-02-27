@@ -13,7 +13,8 @@ st.set_page_config(page_title="Dashboard — RouteIQ", page_icon="📊", layout=
 
 # ── Auth Guard ─────────────────────────────────────────────────────────────────
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
-    st.switch_page("app.py")
+    st.session_state.logged_in = False
+    st.rerun()
 
 if 'dark_mode' not in st.session_state:
     st.session_state.dark_mode = True
@@ -164,7 +165,8 @@ with st.sidebar:
     st.divider()
     if st.button("🚪 Sign Out", use_container_width=True):
         st.session_state.logged_in = False
-        st.switch_page("app.py")
+        st.session_state.logged_in = False
+    st.rerun()
 
 # ── Top Bar ────────────────────────────────────────────────────────────────────
 username = st.session_state.get('username', 'User')

@@ -9,7 +9,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 st.set_page_config(page_title="Delay Predictor — RouteIQ", page_icon="⚠️", layout="wide")
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
-    st.switch_page("app.py")
+    st.session_state.logged_in = False
+    st.rerun()
 if 'dark_mode' not in st.session_state: st.session_state.dark_mode = True
 if 'lang' not in st.session_state: st.session_state.lang = "EN"
 
@@ -86,7 +87,8 @@ with st.sidebar:
             st.session_state.lang = "TA" if st.session_state.lang=="EN" else "EN"; st.rerun()
     st.divider()
     if st.button("🚪 Sign Out", use_container_width=True):
-        st.session_state.logged_in = False; st.switch_page("app.py")
+        st.session_state.logged_in = False
+        st.rerun()
 
 st.markdown(f'<div class="page-title">⚠️ {"தாமத கணிப்பான்" if lang=="TA" else "Delay Predictor"}</div><div class="page-sub">{"ஒரு ஷிப்மென்ட் தாமதமாகுமா என்று AI கணிக்கும்" if lang=="TA" else "AI predicts if your shipment will be delayed before it leaves the warehouse"}</div>', unsafe_allow_html=True)
 
